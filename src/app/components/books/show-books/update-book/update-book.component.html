@@ -1,0 +1,74 @@
+<app-navbar></app-navbar>
+
+<div class="add-book-form col-md-6 offset-md-3">
+
+  <h1 class="text-center">Update Book</h1><hr><br>
+  <amexio-form [formGroup]="updateBookForm" [header]="true">
+    <amexio-form-header> Update book </amexio-form-header>
+    <amexio-form-body>
+      <amexio-row>
+        <amexio-column size="10">
+
+          <amexio-text-input
+          formControlName="authorName"
+          [field-label]="'Author Name'"
+          [(ngModel)]="bookToUpdateWithAllData.authorName"
+          [allow-blank]="false"
+          [error-msg]="'Please enter author name'"
+          [enable-popover]="true"
+          [place-holder]="'Please enter author name'"
+          [icon-feedback]="false"
+        >
+        </amexio-text-input>
+
+        <amexio-text-input
+        formControlName="discription"
+        [field-label]="'Discription'"
+        [(ngModel)]="bookToUpdateWithAllData.discription"
+        [allow-blank]="false"
+        [error-msg]="'Please enter discription'"
+        [enable-popover]="true"
+        [place-holder]="'Please enter discription'"
+        [icon-feedback]="false"
+      >
+      </amexio-text-input>
+
+        </amexio-column>
+      </amexio-row>
+    </amexio-form-body>
+    <amexio-form-action>
+      <amexio-button
+      (onClick)="onUpdateBook()"
+      [disabled]="!updateBookForm.valid"
+        [label]="'Save'"
+        [type]="'theme-color'"
+        [tooltip]="'toolTip'"
+        [icon]="'icon'"
+        [disabled]="false"
+        [form-bind]="'form-bind'"
+        [size]="'small'"
+        [loading]="false"
+        [block]="false"
+      >
+      </amexio-button>
+      <amexio-button
+      (onClick)="onCancleUpdateBook()"
+        [label]="'Cancle'"
+        [type]="'green'"
+        [tooltip]="'toolTip'"
+        [icon]="'icon'"
+        [disabled]="false"
+        [form-bind]="'form-bind'"
+        [size]="'small'"
+        [loading]="false"
+        [block]="false"
+      >
+      </amexio-button>
+    </amexio-form-action>
+  </amexio-form>
+
+<!--
+  <div *ngIf="formUpdated">
+
+  </div> -->
+</div>

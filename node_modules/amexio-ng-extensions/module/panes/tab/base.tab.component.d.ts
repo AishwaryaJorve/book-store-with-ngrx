@@ -1,0 +1,34 @@
+import { ComponentFactoryResolver, ElementRef, QueryList } from '@angular/core';
+import { AmexioTabPillComponent } from './tab.pill.component';
+import { LifeCycleBaseComponent } from '../../base/lifecycle.base.component';
+export declare class BaseTabComponent extends LifeCycleBaseComponent {
+    componentFactoryResolver: ComponentFactoryResolver;
+    target: any;
+    queryTabs: QueryList<AmexioTabPillComponent>;
+    tabCollection: AmexioTabPillComponent[];
+    tabPosition: string;
+    tabs: ElementRef;
+    tabslist: ElementRef;
+    fullPageTabs: boolean;
+    activeBGColor: boolean;
+    bodyheight: any;
+    closable: boolean;
+    onClick: any;
+    singleTabWidth: any;
+    minHeight: any;
+    totalTabs: number;
+    constructor(componentFactoryResolver: ComponentFactoryResolver);
+    dummyArray: any[];
+    shownext: boolean;
+    height: any;
+    tabType: string;
+    addDynamicTab(title: string, amexiocolor: string, closable: boolean, component: any): any;
+    selectTab(tab: AmexioTabPillComponent): void;
+    tabPillClose(tabNode: AmexioTabPillComponent): void;
+    onVerticalTabClick(tab: any): void;
+    activateTab(tabId: number): void;
+    tabDomRemove(tab: any): void;
+    asignTabPillClass(tabData: any): void;
+    adjustWidth(): void;
+    onAdjustHeight(): void;
+}

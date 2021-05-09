@@ -1,0 +1,67 @@
+<app-navbar></app-navbar>
+
+<div class="add-book-form col-md-6 offset-md-3">
+  <h1 class="text-center">Add Book</h1>
+  <hr />
+  <br />
+  <amexio-form [formGroup]="addBookForm" [header]="true">
+    <amexio-form-header> Add book Form </amexio-form-header>
+    <amexio-form-body>
+      <amexio-row>
+        <amexio-column size="10">
+          <amexio-text-input
+            formControlName="bookName"
+            [field-label]="'Book Name'"
+            [allow-blank]="false"
+            [error-msg]="'Please enter book name'"
+            [enable-popover]="true"
+            [place-holder]="'Please enter book name'"
+            [icon-feedback]="false"
+          >
+          </amexio-text-input>
+
+          <amexio-textarea-input
+            formControlName="authorName"
+            [field-label]="'Author Name'"
+            [allow-blank]="false"
+            [error-msg]="'Please enter author name'"
+            [enable-popover]="true"
+            [place-holder]="'Please enter author name'"
+            [icon-feedback]="false"
+          >
+          </amexio-textarea-input>
+
+          <amexio-text-input
+            formControlName="discription"
+            [field-label]="'Discription'"
+            [allow-blank]="false"
+            [error-msg]="'Please enter discription'"
+            [enable-popover]="true"
+            [place-holder]="'Please enter discription'"
+            [icon-feedback]="false"
+          >
+          </amexio-text-input>
+        </amexio-column>
+      </amexio-row>
+    </amexio-form-body>
+    <amexio-form-action>
+      <amexio-button
+        (onClick)="onClickAddBook()"
+        [disabled]="!addBookForm.valid"
+        class="col-md-6 offset-md-3"
+        [label]="'Save'"
+        [type]="'theme-color'"
+        [tooltip]="'toolTip'"
+        [icon]="'icon'"
+        [disabled]="false"
+        [form-bind]="'form-bind'"
+        [size]="'small'"
+        [loading]="false"
+        [block]="false"
+      >
+      </amexio-button>
+    </amexio-form-action>
+  </amexio-form>
+
+  <h1 *ngIf="formAdded">Book Added Succesfully!</h1>
+</div>

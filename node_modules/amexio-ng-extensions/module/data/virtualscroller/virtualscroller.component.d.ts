@@ -1,0 +1,31 @@
+import { ElementRef, OnDestroy, OnInit, Renderer2, TemplateRef } from '@angular/core';
+export declare class AmexioVirtualScrollerComponent implements OnInit, OnDestroy {
+    private renderer;
+    height: number;
+    data: any[];
+    itemSize: number;
+    windowScroll: boolean;
+    onScrollDown: any;
+    bodyTemplate: TemplateRef<any>;
+    virtualscoller: ElementRef;
+    windowscrolllistener: any;
+    divscrolllistener: any;
+    currentViewData: any[];
+    totalCount: number;
+    pageSize: number;
+    isOverloaded: boolean;
+    show: boolean;
+    newheight: string;
+    constructor(renderer: Renderer2);
+    ngOnInit(): void;
+    private pageAndTotalCountCal;
+    private initLoad;
+    handleDivScrollListener(event: any): void;
+    private loadNewData;
+    addData(newData: any): void;
+    bindDocumentClickListener(): void;
+    unbindDocumentClickListener(): void;
+    private handleDocumentListener;
+    private getScrollPercent;
+    ngOnDestroy(): void;
+}

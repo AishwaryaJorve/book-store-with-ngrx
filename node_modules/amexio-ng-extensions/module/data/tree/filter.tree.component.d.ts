@@ -1,0 +1,62 @@
+/**
+ * Created by pratik on 11/12/17.
+ */
+import { HttpClient } from '@angular/common/http';
+import { AfterViewInit, ChangeDetectorRef, OnInit, TemplateRef } from '@angular/core';
+import { CommonDataService } from '../../services/data/common.data.service';
+export declare class AmexioFilterTreeComponent implements OnInit, AfterViewInit {
+    private _http;
+    private cdf;
+    private treeViewFilterService;
+    private componentLoaded;
+    httpurl: string;
+    httpmethod: string;
+    datareader: string;
+    _data: any;
+    data: any[];
+    enablecheckbox: boolean;
+    nodeClick: any;
+    onTreeNodeChecked: any;
+    nodeRightClick: any;
+    rightClick: any;
+    triggerchar: number;
+    childarraykey: string;
+    displaykey: string;
+    wordwrap: boolean;
+    contextmenu: any[];
+    filtertreeflag: boolean;
+    parentRef: any;
+    treeData: any;
+    orgTreeData: any;
+    filterText: string;
+    filterIndex: number;
+    templates: any;
+    isDataFound: boolean;
+    onClickSearch: boolean;
+    filterOptionData: any;
+    previousValue: any;
+    showToolTip: boolean;
+    mask: boolean;
+    destroyExpandAll: any;
+    isexpandAll: boolean;
+    parentTmp: TemplateRef<any>;
+    constructor(_http: HttpClient, cdf: ChangeDetectorRef, treeViewFilterService: CommonDataService);
+    ngOnInit(): void;
+    ngAfterViewInit(): void;
+    updateComponent(): void;
+    filterData(): void;
+    searchTree(data: any[], matchingTitle: string): any;
+    filterActualData(data: any[], fi: any, matchingTitle: any): any;
+    filterOption(data: any): void;
+    renderServiceData(): void;
+    setData(httpResponse: any): void;
+    getData(httpResponse: any): any;
+    callService(): void;
+    onRowSelect(data: any): void;
+    onCheckSelect(data: any): void;
+    OnRightClickMenu(data: any): void;
+    loadContextMenu(data: any): void;
+    generatefilterIndex(data: any, parentId: number, rannumber: any): void;
+    expandAll(node: any): void;
+    expandAllCall(node: any): void;
+}

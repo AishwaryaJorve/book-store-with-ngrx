@@ -1,0 +1,34 @@
+import { AfterContentInit, OnInit, QueryList, Renderer2 } from '@angular/core';
+import { AmexioChipComponent } from '../chip/chip.component';
+export declare class AmexioChipsComponent implements AfterContentInit, OnInit {
+    renderer: Renderer2;
+    queryChips: QueryList<AmexioChipComponent>;
+    chipCollection: AmexioChipComponent[];
+    data: any[];
+    displayfield: any;
+    selectedchipsData: any;
+    closeClick: any;
+    componentId: any;
+    chipindex: number;
+    prevchipindex: number;
+    chiplabel: any;
+    documentClickListener: any;
+    obj: any;
+    constructor(renderer: Renderer2);
+    ngAfterContentInit(): void;
+    ngOnInit(): void;
+    listenChipOutClick(): void;
+    onCloseChipsClick(item: any): void;
+    emitCloseData(item: any): void;
+    closeFocusedChip(item: any, chipdata: any): void;
+    emitSelectedLabel(item: any): void;
+    generateIndex(): void;
+    onchipsKeyup(event: any): void;
+    navigateChips(event: any): void;
+    leftArrowKeyNavigation(event: any): void;
+    rightArrowKeyNavigation(event: any): void;
+    setAriaActiveDescendant(rowindex: any): void;
+    focusToLastChip(event: any): void;
+    focusToFirstChip(event: any): void;
+    closeChip(closeindex: any): void;
+}

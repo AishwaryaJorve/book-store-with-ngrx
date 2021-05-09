@@ -1,0 +1,83 @@
+<div class="col-md-6 offset-md-3">
+  <h1 class="text-center">Sign UP here</h1>
+  <hr />
+  <!-- <img class="login-image" src="../../assets/images/login.png" /> -->
+
+  <br />
+
+  <amexio-form [formGroup]="signForm" [header]="true" class="login-form">
+    <amexio-form-header size="5">Sign Up form</amexio-form-header>
+    <amexio-form-body>
+      <amexio-row>
+        <amexio-column size="8">
+          <amexio-text-input
+            formControlName="firstName"
+            [field-label]="'First Name'"
+            [allow-blank]="false"
+            [error-msg]="'Please enter first name'"
+            [enable-popover]="true"
+            [place-holder]="'Please enter first name'"
+            [icon-feedback]="false"
+          >
+          </amexio-text-input>
+
+          <amexio-text-input
+            formControlName="lastName"
+            [field-label]="'Last Name'"
+            [allow-blank]="false"
+            [error-msg]="'Please enter last name'"
+            [enable-popover]="true"
+            [place-holder]="'Please enter last name'"
+            [icon-feedback]="false"
+          >
+          </amexio-text-input>
+
+          <amexio-text-input
+            formControlName="userName"
+            [field-label]="'User Name'"
+            [allow-blank]="false"
+            [error-msg]="'Please enter user name'"
+            [enable-popover]="true"
+            [place-holder]="'Please enter user name'"
+            [icon-feedback]="false"
+          >
+          </amexio-text-input>
+
+          <amexio-password-input
+            formControlName="password"
+            name="passwo"
+            [field-label]="'Password'"
+            [allow-blank]="false"
+            [error-msg]="'Please enter password'"
+            [enable-popover]="true"
+            [place-holder]="'Please enter password'"
+            [icon-feedback]="false"
+          >
+          </amexio-password-input>
+
+        </amexio-column>
+      </amexio-row>
+    </amexio-form-body>
+    <amexio-form-action>
+      <amexio-button
+      (onClick)="onClickSignUp()"
+      [disabled]="!signForm.valid"
+        [label]="'Signup'"
+        [type]="'theme-color'"
+        [tooltip]="'toolTip'"
+        [icon]="'icon'"
+        [disabled]="false"
+        [form-bind]="'form-bind'"
+        [size]="'small'"
+        [loading]="false"
+        [block]="false"
+      >
+      </amexio-button>
+
+    </amexio-form-action>
+  </amexio-form>
+  <h5 class="text-center">Already have an account ?<a routerLink="../login">Login</a></h5>
+
+</div>
+
+<router-outlet></router-outlet>

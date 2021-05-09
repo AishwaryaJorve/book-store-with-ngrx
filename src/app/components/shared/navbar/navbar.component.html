@@ -1,0 +1,44 @@
+<!-- <a routerLink=''><h2>Login Application</h2></a> -->
+
+<amexio-row>
+  <amexio-column class="fixed">
+    <amexio-nav
+      amexioColorPalette
+      [color-palette]="'primary'"
+      [class]="'header-style'"
+    >
+      <amexio-nav-item
+        position-left
+        [type]="'menu'"
+        (onNavItemClick)="onClickDashboard()"
+        routerLinkActive="active"
+        [title]="'Home'"
+      >
+      </amexio-nav-item>
+
+      <amexio-nav-item
+        position-left
+        [type]="'menu'"
+        (onNavItemClick)="onClickShowAllBook()"
+        [title]="'Show Book'"
+      >
+      </amexio-nav-item>
+
+      <amexio-nav-item
+        position-left
+        [type]="'menu'"
+        (onNavItemClick)="onClickAddBook()"
+        [title]="'Add Book'"
+      >
+      </amexio-nav-item>
+
+      <amexio-nav-item
+        position-left
+        [type]="'menu'"
+        (onNavItemClick)="onClickLogOut()"
+        [title]="'Log out'"
+      >
+      </amexio-nav-item>
+    </amexio-nav>
+  </amexio-column>
+</amexio-row>

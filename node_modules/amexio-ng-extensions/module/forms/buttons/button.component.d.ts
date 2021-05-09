@@ -1,0 +1,34 @@
+import { OnInit } from '@angular/core';
+export declare const COMPONENT_CLASS_MAP: any;
+export declare class AmexioButtonComponent implements OnInit {
+    roundedgeclass: string;
+    badgeclsname: any;
+    label: string;
+    badge: number;
+    icon: string;
+    type: string;
+    tooltip: string;
+    disabled: boolean;
+    formbind: string;
+    size: string;
+    loading: boolean;
+    onClick: any;
+    onIconClick: any;
+    block: boolean;
+    bgcolor: string;
+    color: string;
+    rightIcon: string;
+    closableIcon: boolean;
+    bgBorderColor: string;
+    badgeCssClass: string;
+    ispressed: boolean;
+    bgColorClass: string;
+    constructor();
+    buttonClick(event: any): void;
+    IconClick(event: any): void;
+    ngOnInit(): void;
+    badgeClass(): string;
+    setDisabled(disabled: boolean): void;
+    getBGStyle(): any;
+    setRoundEdge(type: any): void;
+}

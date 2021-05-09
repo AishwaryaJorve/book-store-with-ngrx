@@ -1,0 +1,32 @@
+import { EventEmitter, OnChanges, OnInit } from '@angular/core';
+import { SimpleChanges } from '@angular/core';
+import { AmexioThemeSwitcherService } from '../../services/data/amexio.theme.service';
+export declare class AmexioThemeSwitcherComponent implements OnInit, OnChanges {
+    private service;
+    data: any[];
+    isMoreDetails: boolean;
+    testmode: boolean;
+    isMDA: boolean;
+    colsize: number;
+    relative: boolean;
+    buttonType: string;
+    horizontalPosition: string;
+    verticalPosition: string;
+    onclose: EventEmitter<any>;
+    show: boolean;
+    closeable: boolean;
+    onThemeClick: EventEmitter<any>;
+    respo: any;
+    positionMapData: string[];
+    isFloatingButton: boolean;
+    isSimpleButton: boolean;
+    constructor(service: AmexioThemeSwitcherService);
+    ngOnInit(): void;
+    loadMDAThemes(): void;
+    ngOnChanges(changes: SimpleChanges): void;
+    themeChange(theme: any): void;
+    onChange(value: boolean): void;
+    togglePanel(): void;
+    themeStyle(): any;
+    getPostion(style: any): any;
+}

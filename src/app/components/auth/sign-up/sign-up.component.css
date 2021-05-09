@@ -1,0 +1,18 @@
+@media (min-width: 768px)
+{
+.col-md-6 {
+    flex: 0 0 50%;
+    max-width: 32%;
+}
+.offset-md-3 {
+      margin-left: 35%;
+      margin-top: 7%;
+  }
+
+}
+.login-link{
+  margin-top: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+}

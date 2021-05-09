@@ -1,0 +1,35 @@
+import { AfterContentInit, ElementRef, EventEmitter, OnInit, QueryList } from '@angular/core';
+import { AmexioAccordionHeaderComponent } from './accordion.header.component';
+export declare class AmexioAccordionTabComponent implements OnInit, AfterContentInit {
+    header: any;
+    active: boolean;
+    emittedEvent: EventEmitter<{}>;
+    leftIcon: string;
+    angleIcon: boolean;
+    disabled: boolean;
+    data: any;
+    btn: ElementRef;
+    isTransparent: boolean;
+    currentstate: string;
+    expanded: boolean;
+    componentId: any;
+    isSelected: boolean;
+    bgColor: string;
+    color: string;
+    hover: boolean;
+    themeCss: any;
+    amexioComponentId: string;
+    accordionHeaderData: any;
+    headerPresent: boolean;
+    gradientFlag: boolean;
+    amexioAccHeader: QueryList<AmexioAccordionHeaderComponent>;
+    constructor();
+    ngOnInit(): void;
+    ngAfterContentInit(): void;
+    emitEvent(): void;
+    onEnterClick(): void;
+    onArrowDown(): void;
+    onArrowUp(): void;
+    setColorPalette(themeClass: any): void;
+    changeHeaderColor(): void;
+}
