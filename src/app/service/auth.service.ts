@@ -38,13 +38,7 @@ export class AuthService {
     );
   }
 
-  signUp(
-    firstName,
-    lastName,
-    userName,
-    password,
-    books
-  ): Observable<UserWithToken> {
+  signUp(firstName, lastName, userName, password, books): Observable<UserWithToken> {
     let signUpData = { firstName, lastName, userName, password, books };
     var reqHeader = new HttpHeaders({
       "Content-Type": "application/json",

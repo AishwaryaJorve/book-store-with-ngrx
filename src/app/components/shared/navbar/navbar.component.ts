@@ -24,26 +24,33 @@ export class NavbarComponent implements OnInit {
 
   onClickHome() {
     this.dataService.logout();
-    this.router.navigate(["../dashboard"], { relativeTo: this.route });
+    this.router.navigate(["../dashboard"], {
+      relativeTo: this.route,
+    });
   }
 
   onClickDashboard() {
     this.dataService.logout();
-    this.router.navigate(["../dashboard"], { relativeTo: this.route });
+    this.router.navigate(["../dashboard"], {
+      relativeTo: this.route,
+    });
   }
 
   onClickAddBook() {
-    this.router.navigate(["../addbook"], { relativeTo: this.route });
+    this.router.navigate(["../addbook"], {
+      relativeTo: this.route,
+    });
   }
 
   onClickShowAllBook() {
-    this.router.navigate(["../showbooks"], { relativeTo: this.route });
+    this.router.navigate(["../showbooks"], {
+      relativeTo: this.route,
+    });
   }
 
-  onClickLogOut(event: Event) {
-    event.preventDefault();
+  logout(event: Event) {
     this.store.dispatch(autoLogout());
   }
 
-  functionName($event) {}
+  // functionName($event) {}
 }

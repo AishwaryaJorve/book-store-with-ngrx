@@ -35,10 +35,11 @@
       <amexio-nav-item
         position-left
         [type]="'menu'"
-        (onNavItemClick)="onClickLogOut()"
+        (onNavItemClick)="logout($event)"
         [title]="'Log out'"
       >
       </amexio-nav-item>
+      <!-- <button (click)="logout($event)">Logout</button> -->
     </amexio-nav>
   </amexio-column>
 </amexio-row>

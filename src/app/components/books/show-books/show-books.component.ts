@@ -8,6 +8,7 @@ import { BooksService } from "src/app/service/books.service";
 import { DataService } from "src/app/service/data.service";
 import { AppState } from "src/app/store/app.state";
 import { getBooksFromAuthState } from "../../auth/state/auth.selectors";
+import { loadAllBooks } from "../state/book.action";
 @Component({
   selector: "app-show-books",
   templateUrl: "./show-books.component.html",
@@ -19,6 +20,7 @@ export class ShowBooksComponent implements OnInit {
   allBooks: Observable<Books[]>;
   updateBook: boolean = false;
   bookToUpdateWithAllData: Books;
+  idOfLoggedInUser: any;
 
   confirmdialoguematerial: boolean;
   confirmdialoguenonmaterial: boolean;
@@ -33,6 +35,18 @@ export class ShowBooksComponent implements OnInit {
   ngOnInit() {
     //when load page should display all book
     this.fetchBooksFromUser();
+    //Whatever we want to get from store  have to give call to selector
+    // this.allBooks = this.store.select(
+    //   getBooksFromAuthState
+    // );
+    this.findIdOfLoggedInUser();
+    this.store.dispatch(loadAllBooks(this.idOfLoggedInUser));
+  }
+
+  findIdOfLoggedInUser() {
+    const userDataString = localStorage.getItem("userData");
+    let userData = JSON.parse(userDataString);
+    this.idOfLoggedInUser = userData.id;
   }
 
   /**
@@ -57,29 +71,29 @@ export class ShowBooksComponent implements OnInit {
    * dalete book using bookid
    * @param bookId
    */
-  onDeleteClickDeleteBook(bookId: any) {
-    //delete book by bookId from localStorage and get perticular book deleted user
-    let user = this.bookService.deleteBookById(bookId);
+  // onDeleteClickDeleteBook(bookId: any) {
+  //   //delete book by bookId from localStorage and get perticular book deleted user
+  //   let user = this.bookService.deleteBookById(bookId);
 
-    //using updateBook method of bookService backend call for delete from DB.
-    this.bookService.updateBook(user);
+  //   //using updateBook method of bookService backend call for delete from DB.
+  //   this.bookService.updateBook(user);
 
-    //after delete book again store fresh user in localstorage.
-    this.dataService.saveUser(user);
+  //   //after delete book again store fresh user in localstorage.
+  //   this.dataService.saveUser(user);
 
-    //after delete book agian reload same page.
-    this.reloadCurrentRoute();
-  }
+  //   //after delete book agian reload same page.
+  //   this.reloadCurrentRoute();
+  // }
 
   // comes id of book which to be update through button onclick
-  onUpdateClick(bookToUpdateWithAllData: Books) {
-    this.bookToUpdateWithAllData = bookToUpdateWithAllData;
-    this.updateBook = true;
-  }
+  // onUpdateClick(bookToUpdateWithAllData: Books) {
+  //   this.bookToUpdateWithAllData = bookToUpdateWithAllData;
+  //   this.updateBook = true;
+  // }
 
   //called to the getBookByBookName() of the service method
-  searchBookByName() {
-    // this.allBooks = this.books.getBookByBookName(this.bookNameForSearch);
-    console.log(this.allBooks);
-  }
+  // searchBookByName() {
+  //   // this.allBooks = this.books.getBookByBookName(this.bookNameForSearch);
+  //   console.log(this.allBooks);
+  // }
 }

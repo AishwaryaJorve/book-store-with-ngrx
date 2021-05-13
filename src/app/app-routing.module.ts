@@ -20,7 +20,7 @@ const appRoutes: Routes = [
     path: "showbooks",
     component: ShowBooksComponent,
     pathMatch: "full",
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: "auth",

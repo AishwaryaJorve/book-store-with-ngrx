@@ -27,24 +27,49 @@ export class AuthEffects {
     private route: ActivatedRoute
   ) {}
 
+  /**
+   * login effect
+   */
   login$ = createEffect((): any => {
     return this.actions$.pipe(
       ofType(loginStart),
       exhaustMap((action) => {
-        return this.authService.login(action.userName, action.password).pipe(
-          map((data) => {
-            this.store.dispatch(setErrorMessage({ message: "" }));
-            const user = this.authService.formatUser(data);
-            this.authService.setUserInLocalStorage(user);
-            // return loginSuccess({ user, redirect: true });
-          }),
-          catchError((errResp): any => {
-            // console.log(errResp);
-            this.errorMessage = this.authService.getErrorMessage(
-              errResp.status
-            );
-            return of(setErrorMessage({ message: this.errorMessage }));
-          })
+        //call to login function of authservice
+        return (
+          this.authService
+            .login(action.userName, action.password)
+            //data coming from authservice
+            .pipe(
+              map((data) => {
+                //if login successful set error message as empty string
+                this.store.dispatch(setErrorMessage({ message: "" }));
+                /**
+                 * After lgin we will get token and user we want user only so call to
+                 * formatUser of authservice
+                 */
+                const user = this.authService.formatUser(data);
+                // After get user call to setUserLocalStorage
+                this.authService.setUserInLocalStorage(user);
+                //At last return loginSuccess action
+                return loginSuccess({
+                  user,
+                  redirect: true,
+                });
+              }),
+              catchError((errResp): any => {
+                /**
+                 * call to getErrorMessage method of authService will status code wise get
+                 * error message
+                 * */
+                this.errorMessage = this.authService.getErrorMessage(errResp.status);
+                //set that message in state
+                return of(
+                  setErrorMessage({
+                    message: this.errorMessage,
+                  })
+                );
+              })
+            )
         );
       })
     );
@@ -52,17 +77,12 @@ export class AuthEffects {
   loginRedirect$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(loginSuccess),
+        ofType(...[loginSuccess, signupSuccess]),
         tap((action) => {
           this.store.dispatch(setErrorMessage({ message: "" }));
-          this.router.navigate(["/"], {
-            relativeTo: this.route,
-          });
-          // if (action.redirect) {
-          //   this.router.navigate(["/"], {
-          //     relativeTo: this.route,
-          //   });
-          // }
+          if (action.redirect) {
+            this.router.navigate(["../../showbooks"]);
+          }
         })
       );
     },
@@ -74,24 +94,23 @@ export class AuthEffects {
       ofType(signupStart),
       exhaustMap((action) => {
         return this.authService
-          .signUp(
-            action.firstName,
-            action.lastName,
-            action.userName,
-            action.password,
-            action.books
-          )
+          .signUp(action.firstName, action.lastName, action.userName, action.password, action.books)
           .pipe(
             map((data) => {
               const user = this.authService.formatUser(data);
-              return signupSuccess({ user });
+              return signupSuccess({
+                user,
+                redirect: true,
+              });
             }),
             catchError((errResp): any => {
               // console.log(errResp);
-              this.errorMessage = this.authService.getErrorMessage(
-                errResp.status
+              this.errorMessage = this.authService.getErrorMessage(errResp.status);
+              return of(
+                setErrorMessage({
+                  message: this.errorMessage,
+                })
               );
-              return of(setErrorMessage({ message: this.errorMessage }));
             })
           );
       })
@@ -104,20 +123,23 @@ export class AuthEffects {
       mergeMap((action) => {
         const user = this.authService.getUserFromLocalStorage();
         console.log(user);
-        return of(loginSuccess({ user }));
+        return of(loginSuccess({ user, redirect: false }));
       })
     );
   });
 
-  logout$ = createEffect((): any => {
-    return this.actions$.pipe(
-      ofType(autoLogout),
-      map((action) => {
-        this.authService.logOut();
-        this.router.navigate(["dashboard"]);
-      })
-    );
-  });
+  logout$ = createEffect(
+    (): any => {
+      return this.actions$.pipe(
+        ofType(autoLogout),
+        map((action) => {
+          this.authService.logOut();
+          this.router.navigate(["../dashboard"]);
+        })
+      );
+    },
+    { dispatch: false }
+  );
 
   // signUpRedirect$ = createEffect(
   //   () => {
