@@ -4,27 +4,31 @@ import { AppComponent } from "./app.component";
 import { AddBookComponent } from "./components/books/add-book/add-book.component";
 import { DashboardComponent } from "./components/shared/dashboard/dashboard.component";
 import { LoginComponent } from "./components/auth/login/login.component";
-import { ShowBooksComponent } from "./components/books/show-books/show-books.component";
 import { UpdateBookComponent } from "./components/books/show-books/update-book/update-book.component";
 import { SignUpComponent } from "./components/auth/sign-up/sign-up.component";
 import { ErrorPageComponent } from "./error-page/error-page.component";
 import { AuthGuard } from "./service/auth.guard";
 import { AuthModule } from "./components/auth/auth.module";
+import { BookModule } from "./components/books/book.module";
 const appRoutes: Routes = [
   {
     path: "updatebook/:id",
     component: UpdateBookComponent,
     pathMatch: "full",
   },
-  {
-    path: "showbooks",
-    component: ShowBooksComponent,
-    pathMatch: "full",
-    canActivate: [AuthGuard],
-  },
+  // {
+  //   path: "showbooks",
+  //   component: ShowBooksComponent,
+  //   pathMatch: "full",
+  //   canActivate: [AuthGuard],
+  // },
   {
     path: "auth",
     loadChildren: () => AuthModule,
+  },
+  {
+    path: "book",
+    loadChildren: () => BookModule,
   },
   {
     path: "addbook",

@@ -16,11 +16,9 @@ import { DashboardComponent } from "./components/shared/dashboard/dashboard.comp
 import { LoginComponent } from "./components/auth/login/login.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule } from "@angular/common/http";
-import { ShowBooksComponent } from "./components/books/show-books/show-books.component";
 import { BooksService } from "./service/books.service";
 import { AddBookComponent } from "./components/books/add-book/add-book.component";
 import { TranslocoRootModule } from "./transloco/transloco-root.module";
-import { UpdateBookComponent } from "./components/books/show-books/update-book/update-book.component";
 import { ErrorPageComponent } from "./error-page/error-page.component";
 import { DataService } from "./service/data.service";
 import { AuthService } from "./service/auth.service";
@@ -34,15 +32,15 @@ import { AuthReducer } from "./components/auth/state/auth.reducer";
 import { SharedReducer } from "./store/shared/shared.reducer";
 import { appReducer } from "./store/app.state";
 import { AuthEffects } from "./components/auth/state/auth.effetcs";
+import { UpdateBookComponent } from "./components/books/show-books/update-book/update-book.component";
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     DashboardComponent,
-    ShowBooksComponent,
     AddBookComponent,
-    UpdateBookComponent,
     ErrorPageComponent,
+    UpdateBookComponent,
   ],
   imports: [
     BrowserModule,
