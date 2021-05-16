@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
+
 <div class="showbooks col-md-6 offset-md-3" *ngIf="!updateBook">
   <hr />
   <br /><br />
@@ -42,20 +43,20 @@
       <amexio-label size="small"> -{{ allBooks.authorName }} </amexio-label>
     </amexio-body>
     <amexio-action>
-      <!-- <amexio-button
+      <amexio-button
         (onClick)="onDeleteClickDeleteBook(book.bookId)"
         [label]="'Delete'"
         [tooltip]="'delete'"
         [icon]="'fa fa-trash'"
         [type]="'danger'"
       >
-      </amexio-button> -->
-      <!-- <amexio-button
+      </amexio-button> 
+      <amexio-button
         (onClick)="onUpdateClick(book)"
         [label]="'Update'"
         [type]="'primary'"
       >
-      </amexio-button> -->
+      </amexio-button>
     </amexio-action>
   </amexio-card>
   </amexio-row>
