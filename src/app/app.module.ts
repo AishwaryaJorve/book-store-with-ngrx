@@ -39,7 +39,7 @@ import { AuthModule } from "./components/auth/auth.module";
     AppComponent,
     // NavbarComponent,
     DashboardComponent,
-    AddBookComponent,
+    // AddBookComponent,
     ErrorPageComponent,
   ],
   imports: [

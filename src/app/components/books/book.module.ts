@@ -14,6 +14,7 @@ import {
   AmexioWidgetModule,
 } from "amexio-ng-extensions";
 import { NavbarComponent } from "../navbar/navbar.component";
+import { AddBookComponent } from "./add-book/add-book.component";
 import { ShowBooksComponent } from "./show-books/show-books.component";
 import { UpdateBookComponent } from "./show-books/update-book/update-book.component";
 import { BookEffects } from "./state/book.effects";
@@ -33,10 +34,15 @@ const routes: Routes = [
     component: UpdateBookComponent,
     pathMatch: "full",
   },
+  {
+    path: "addbook",
+    component: AddBookComponent,
+    pathMatch: "full",
+  },
 ];
 
 @NgModule({
-  declarations: [ShowBooksComponent, UpdateBookComponent, NavbarComponent],
+  declarations: [ShowBooksComponent, UpdateBookComponent, NavbarComponent, AddBookComponent],
   imports: [
     FormsModule,
     CommonModule,

@@ -37,13 +37,13 @@ export class NavbarComponent implements OnInit {
   }
 
   onClickAddBook() {
-    this.router.navigate(["../addbook"], {
+    this.router.navigate(["../../book/addbook"], {
       relativeTo: this.route,
     });
   }
 
   onClickShowAllBook() {
-    this.router.navigate(["../showbooks"], {
+    this.router.navigate(["../../book/showbooks"], {
       relativeTo: this.route,
     });
   }

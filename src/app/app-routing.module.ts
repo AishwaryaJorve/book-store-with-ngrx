@@ -31,12 +31,12 @@ const appRoutes: Routes = [
     path: "book",
     loadChildren: () => BookModule,
   },
-  {
-    path: "addbook",
-    component: AddBookComponent,
-    pathMatch: "full",
-    canActivate: [AuthGuard],
-  },
+  // {
+  //   path: "addbook",
+  //   component: AddBookComponent,
+  //   pathMatch: "full",
+  //   canActivate: [AuthGuard],
+  // },
   {
     path: "dashboard",
     component: DashboardComponent,
