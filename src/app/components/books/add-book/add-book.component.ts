@@ -1,11 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import {
-  FormGroup,
-  FormArray,
-  FormBuilder,
-  Validators,
-  FormControl,
-} from "@angular/forms";
+import { FormGroup, FormArray, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Books } from "src/app/model/books.model";
 import { User } from "src/app/model/user.model";
@@ -40,7 +34,6 @@ export class AddBookComponent implements OnInit {
 
   // onClick save book call to the service function
   onClickAddBook() {
-
     // copy form filled data in 'bookInComingdata' variable
     this.bookInComingData = this.addBookForm.value;
     let bookId = uuid();
@@ -55,9 +48,9 @@ export class AddBookComponent implements OnInit {
 
     // update books array of user in localstorage
     let user = this.dataService.saveBook(book);
-      
+
     // using book service call to backend to update data.
-    this.booksService.updateBook(user);
+    // this.booksService.updateBook(user);
 
     // again save updated user's(book) in localstorage.
     this.dataService.saveUser(user);

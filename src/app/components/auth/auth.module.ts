@@ -68,7 +68,7 @@ const routes: Routes = [
     AmexioEnterpriseModule,
     AmexioMapModule,
     AmexioLayoutModule,
-    EffectsModule.forFeature(),
+    EffectsModule.forFeature([]),
     StoreModule.forFeature(AUTH_STATE_NAME, AuthReducer),
     RouterModule.forChild(routes),
   ],

@@ -21,7 +21,7 @@ export class AuthEffects {
   errorMessage: string = "";
   constructor(
     private actions$: Actions,
-    private store: Store,
+    private store: Store<any>,
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute
@@ -89,7 +89,7 @@ export class AuthEffects {
     { dispatch: false }
   );
 
-  signUp$ = createEffect(() => {
+  signUp$ = createEffect((): any => {
     return this.actions$.pipe(
       ofType(signupStart),
       exhaustMap((action) => {

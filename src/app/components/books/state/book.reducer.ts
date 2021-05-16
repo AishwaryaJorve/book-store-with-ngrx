@@ -1,6 +1,6 @@
 import { state } from "@angular/animations";
 import { createReducer, on } from "@ngrx/store";
-import { addBook, allBooks } from "./book.action";
+import { addBook, loadAllBooks } from "./book.action";
 import { initialState } from "./book.state";
 
 const _bookReducer = createReducer(
