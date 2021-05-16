@@ -11,8 +11,8 @@ import {
 } from "amexio-ng-extensions";
 
 import { AppComponent } from "./app.component";
-import { NavbarComponent } from "./components/shared/navbar/navbar.component";
-import { DashboardComponent } from "./components/shared/dashboard/dashboard.component";
+import { NavbarComponent } from "./components/navbar/navbar.component";
+import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { LoginComponent } from "./components/auth/login/login.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule } from "@angular/common/http";
@@ -33,6 +33,8 @@ import { SharedReducer } from "./store/shared/shared.reducer";
 import { appReducer } from "./store/app.state";
 import { AuthEffects } from "./components/auth/state/auth.effetcs";
 import { UpdateBookComponent } from "./components/books/show-books/update-book/update-book.component";
+import { ShowBooksComponent } from "./components/books/show-books/show-books.component";
+import { AuthModule } from "./components/auth/auth.module";
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +43,7 @@ import { UpdateBookComponent } from "./components/books/show-books/update-book/u
     AddBookComponent,
     ErrorPageComponent,
     UpdateBookComponent,
+    ShowBooksComponent,
   ],
   imports: [
     BrowserModule,

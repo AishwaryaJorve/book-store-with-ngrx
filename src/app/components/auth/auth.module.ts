@@ -13,7 +13,7 @@ import {
   AmexioWidgetModule,
 } from "amexio-ng-extensions";
 import { AuthGuard } from "src/app/service/auth.guard";
-import { DashboardComponent } from "../shared/dashboard/dashboard.component";
+import { DashboardComponent } from "../dashboard/dashboard.component";
 import { LoginComponent } from "./login/login.component";
 import { SignUpComponent } from "./sign-up/sign-up.component";
 import { AuthEffects } from "./state/auth.effetcs";

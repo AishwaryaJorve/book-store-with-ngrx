@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/store/app.state";
-import { autoLogout } from "../../auth/state/auth.action";
+import { autoLogout } from "../auth/state/auth.action";
 
 @Component({
   selector: "app-dashboard",
