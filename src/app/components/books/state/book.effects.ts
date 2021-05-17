@@ -10,9 +10,12 @@ export class BookEffects {
 
   loadBooks$ = createEffect(
     () => {
+      console.log("in book effect");
       return this.action$.pipe(
         ofType(loadAllBooks),
         mergeMap((action) => {
+          console.log("in mergeMap" + action.id);
+
           return this.bookService.getAllBooks(action.id).pipe(
             map((data) => {
               console.log("hiii");

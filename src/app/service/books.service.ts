@@ -1,8 +1,4 @@
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpParams,
-} from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable, OnInit } from "@angular/core";
 import { Books } from "../model/books.model";
 import { map } from "rxjs/operators";
@@ -17,17 +13,20 @@ export class BooksService implements OnInit {
 
   id: any;
   url = "http://localhost:8080/delete";
-  constructor(
-    private http: HttpClient,
-    private dataService: DataService
-  ) {}
+  constructor(private http: HttpClient, private dataService: DataService) {}
 
   ngOnInit() {
     console.log(this.allBooks);
   }
 
   getAllBooks(id: string): any {
-    return this.http.get(`url.FETCH_BOOK_URL + "/" + id`);
+    console.log("in book service" + id);
+    let token = localStorage.getItem("token");
+    token = JSON.parse(token);
+    console.log(token);
+    return this.http.get(url.FETCH_BOOK_URL + "/" + id, {
+      headers: new HttpHeaders().set("AuthorizedToken", token),
+    });
   }
 
   /**

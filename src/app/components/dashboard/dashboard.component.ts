@@ -16,7 +16,9 @@ export class DashboardComponent implements OnInit {
     private store: Store<AppState>
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log("dashboard");
+  }
 
   onClickLogin() {
     this.router.navigate(["../showbooks"], {

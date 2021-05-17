@@ -31,6 +31,8 @@ export class AuthEffects {
    * login effect
    */
   login$ = createEffect((): any => {
+    console.log("login$");
+
     return this.actions$.pipe(
       ofType(loginStart),
       exhaustMap((action) => {
@@ -76,6 +78,8 @@ export class AuthEffects {
   });
   loginRedirect$ = createEffect(
     () => {
+      console.log("loginRedirect$");
+
       return this.actions$.pipe(
         ofType(...[loginSuccess, signupSuccess]),
         tap((action) => {

@@ -8,3 +8,5 @@ export const LOAD_BOOK_SUCCESS = "[book page] load book success";
 export const addBook = createAction(ADD_BOOK_ACTION, props<{ book: Books[] }>());
 
 export const loadAllBooks = createAction(LOAD_BOOK_SUCCESS, props<{ id: string }>());
+
+// export const deletePost = createAction(DELETE_POST_ACTION, props<{ id: string }>());

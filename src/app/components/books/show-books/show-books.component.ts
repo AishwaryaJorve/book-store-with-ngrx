@@ -20,7 +20,7 @@ export class ShowBooksComponent implements OnInit {
   allBooks: Observable<Books[]>;
   updateBook: boolean = false;
   bookToUpdateWithAllData: Books;
-  idOfLoggedInUser: any;
+  idOfLoggedInUser: string;
 
   confirmdialoguematerial: boolean;
   confirmdialoguenonmaterial: boolean;
@@ -33,21 +33,26 @@ export class ShowBooksComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log("in showbooks component");
     //when load page should display all book
-    this.fetchBooksFromUser();
+    // this.fetchBooksFromUser();
     //Whatever we want to get from store  have to give call to selector
     // this.allBooks = this.store.select(
     //   getBooksFromAuthState
     // );
-    console.log("in showbooks component");
     this.findIdOfLoggedInUser();
-    this.store.dispatch(loadAllBooks(this.idOfLoggedInUser));
+    console.log(this.idOfLoggedInUser);
+    // this.store.dispatch(customIncrement({ value: +this.value }));
+
+    this.store.dispatch(loadAllBooks({ id: this.idOfLoggedInUser }));
   }
 
   findIdOfLoggedInUser() {
     const userDataString = localStorage.getItem("userData");
+    console.log(userDataString);
     let userData = JSON.parse(userDataString);
-    this.idOfLoggedInUser = userData.id;
+    console.log(userData.id);
+    this.idOfLoggedInUser = userData.id.toString();
   }
 
   /**

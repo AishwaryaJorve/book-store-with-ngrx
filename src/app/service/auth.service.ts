@@ -23,6 +23,7 @@ export class AuthService {
   ) {}
 
   login(userName, password): Observable<UserWithToken> {
+    console.log("authService");
     // console.log(loginData);
     var reqHeader = new HttpHeaders({
       "Content-Type": "application/json",
@@ -61,7 +62,12 @@ export class AuthService {
       user.password,
       user.books
     );
+    this.setTokenLocalStorage(responseOfLogin.token);
     return userObject;
+  }
+
+  setTokenLocalStorage(token) {
+    localStorage.setItem("token", JSON.stringify(token));
   }
 
   getErrorMessage(errorCode: any): any {
