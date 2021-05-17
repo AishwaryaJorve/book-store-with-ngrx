@@ -13,16 +13,6 @@ import { ShowBooksComponent } from "./components/books/show-books/show-books.com
 import { BookModule } from "./components/books/book.module";
 // import { BookModule } from "./components/books/book.module";
 const appRoutes: Routes = [
-  // {
-  //   path: "updatebook/:id",
-  //   component: UpdateBookComponent,
-  //   pathMatch: "full",
-  // },
-  // {
-  //   path: "showbooks",
-  //   component: ShowBooksComponent,
-  //   pathMatch: "full",
-  // },
   {
     path: "auth",
     loadChildren: () => AuthModule,
