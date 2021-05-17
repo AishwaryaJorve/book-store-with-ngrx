@@ -9,14 +9,14 @@ export class BookEffects {
   constructor(private action$: Actions, private bookService: BooksService) {}
 
   loadBooks$ = createEffect(
-    () => {
+    (): any => {
       return this.action$.pipe(
         ofType(loadAllBooks),
         mergeMap((action) => {
           return this.bookService.getAllBooks(action.id).pipe(
             map((data) => {
-              console.log("hiii");
               console.log(data);
+              return data;
             })
           );
         })

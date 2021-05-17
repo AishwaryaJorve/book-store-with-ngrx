@@ -44,7 +44,8 @@ export class ShowBooksComponent implements OnInit {
     console.log(this.idOfLoggedInUser);
     // this.store.dispatch(customIncrement({ value: +this.value }));
 
-    this.store.dispatch(loadAllBooks({ id: this.idOfLoggedInUser }));
+    let response = this.store.dispatch(loadAllBooks({ id: this.idOfLoggedInUser }));
+    console.log(response);
   }
 
   findIdOfLoggedInUser() {
