@@ -20,10 +20,8 @@ export class BooksService implements OnInit {
   }
 
   getAllBooks(id: string): any {
-    console.log("in book service" + id);
     let token = localStorage.getItem("token");
     token = JSON.parse(token);
-    console.log(token);
     return this.http.get(url.FETCH_BOOK_URL + "/" + id, {
       headers: new HttpHeaders().set("AuthorizedToken", token),
     });

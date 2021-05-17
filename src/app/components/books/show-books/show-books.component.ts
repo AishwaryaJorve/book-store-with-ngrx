@@ -49,9 +49,7 @@ export class ShowBooksComponent implements OnInit {
 
   findIdOfLoggedInUser() {
     const userDataString = localStorage.getItem("userData");
-    console.log(userDataString);
     let userData = JSON.parse(userDataString);
-    console.log(userData.id);
     this.idOfLoggedInUser = userData.id.toString();
   }
 
