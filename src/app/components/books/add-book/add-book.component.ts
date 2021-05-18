@@ -33,6 +33,8 @@ export class AddBookComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log("addbook");
+    this.store.select(getUser);
     this.addBookForm = this.fb.group({
       bookName: ["", Validators.required],
       authorName: ["", Validators.required],
@@ -46,7 +48,7 @@ export class AddBookComponent implements OnInit {
     this.bookInComingData = this.addBookForm.value;
     let bookId = uuid();
 
-    this.store.select(getUser);
+    // this.store.select(getUser);
     console.log(this.user + "Hello from add book");
     // create Books object with all data
     let book: Books = new Books(

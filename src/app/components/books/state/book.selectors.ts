@@ -13,6 +13,7 @@ export const BOOK_STATE_NAME = "books";
 const getBookState = createFeatureSelector<BookState>(BOOK_STATE_NAME);
 
 export const getBooks = createSelector(getBookState, (state) => {
+  console.log("hello");
   return state.books;
 });
 

@@ -4,12 +4,13 @@ import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { Books } from "src/app/model/books.model";
 import { UserWithToken } from "src/app/model/user-with-token.model";
+import { User } from "src/app/model/user.model";
 import { BooksService } from "src/app/service/books.service";
 import { DataService } from "src/app/service/data.service";
 import { AppState } from "src/app/store/app.state";
 import { getBooksFromAuthState } from "../../auth/state/auth.selectors";
 import { loadAllBooks } from "../state/book.action";
-import { getBooks } from "../state/book.selectors";
+import { getBooks, getUser } from "../state/book.selectors";
 @Component({
   selector: "app-show-books",
   templateUrl: "./show-books.component.html",
@@ -19,6 +20,7 @@ export class ShowBooksComponent implements OnInit {
   searchData: string;
   bookNameForSearch: string = "";
   allBooks: Observable<Books[]>;
+  user: Observable<User>;
   updateBook: boolean = false;
   bookToUpdateWithAllData: Books;
   idOfLoggedInUser: string;
@@ -46,6 +48,7 @@ export class ShowBooksComponent implements OnInit {
     // this.store.dispatch(customIncrement({ value: +this.value }));
 
     this.store.dispatch(loadAllBooks({ id: this.idOfLoggedInUser }));
+    this.user = this.store.select(getUser);
     this.allBooks = this.store.select(getBooks);
   }
 
