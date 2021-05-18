@@ -1,16 +1,16 @@
 import { state } from "@angular/animations";
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { AuthState } from "../../auth/state/auth.state";
-import { bookState } from "./book.state";
+import { BookState } from "./book.state";
 
-export const BOOK_STATE_NAME = "user";
+export const BOOK_STATE_NAME = "books";
 
 /**
  * The createFeatureSelector function selects a piece of state from the root of the state object.
  * This is used for selecting feature states that are loaded eagerly or lazily.
  */
-const getBookState = createFeatureSelector<AuthState>(BOOK_STATE_NAME);
+const getBookState = createFeatureSelector<BookState>(BOOK_STATE_NAME);
 
-export const getBook = createSelector(getBookState, (state) => {
-  return state.user.books;
+export const getBooks = createSelector(getBookState, (state) => {
+  return state.books;
 });

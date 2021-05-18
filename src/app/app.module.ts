@@ -9,7 +9,6 @@ import {
   AmexioEnterpriseModule,
   AmexioMapModule,
 } from "amexio-ng-extensions";
-
 import { AppComponent } from "./app.component";
 import { DashboardComponent } from "./components/dashboard/dashboard.component";
 import { AppRoutingModule } from "./app-routing.module";

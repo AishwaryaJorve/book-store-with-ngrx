@@ -9,6 +9,7 @@ import { DataService } from "src/app/service/data.service";
 import { AppState } from "src/app/store/app.state";
 import { getBooksFromAuthState } from "../../auth/state/auth.selectors";
 import { loadAllBooks } from "../state/book.action";
+import { getBooks } from "../state/book.selectors";
 @Component({
   selector: "app-show-books",
   templateUrl: "./show-books.component.html",
@@ -44,8 +45,8 @@ export class ShowBooksComponent implements OnInit {
     console.log(this.idOfLoggedInUser);
     // this.store.dispatch(customIncrement({ value: +this.value }));
 
-    let response = this.store.dispatch(loadAllBooks({ id: this.idOfLoggedInUser }));
-    console.log(response);
+    this.store.dispatch(loadAllBooks({ id: this.idOfLoggedInUser }));
+    this.allBooks = this.store.select(getBooks);
   }
 
   findIdOfLoggedInUser() {

@@ -1,10 +1,10 @@
 import { Books } from "src/app/model/books.model";
 import { AppState } from "src/app/store/app.state";
 
-export interface bookState {
-  book: Books[];
+export interface BookState {
+  books: Books[];
 }
 
-export const initialState: bookState = {
-  book: null,
+export const initialState: BookState = {
+  books: null,
 };

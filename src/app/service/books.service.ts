@@ -5,6 +5,7 @@ import { map } from "rxjs/operators";
 import { User } from "../model/user.model";
 import { DataService } from "./data.service";
 import url from "../constant/Url";
+import { Observable } from "rxjs";
 @Injectable({
   providedIn: "root",
 })
@@ -19,12 +20,22 @@ export class BooksService implements OnInit {
     console.log(this.allBooks);
   }
 
-  getAllBooks(id: string): any {
+  getAllBooks(id: string): Observable<Books[]> {
     let token = localStorage.getItem("token");
     token = JSON.parse(token);
-    return this.http.get(url.FETCH_BOOK_URL + "/" + id, {
-      headers: new HttpHeaders().set("AuthorizedToken", token),
-    });
+    return this.http
+      .get<Books[]>(url.FETCH_BOOK_URL + "/" + id, {
+        headers: new HttpHeaders().set("AuthorizedToken", token),
+      })
+      .pipe(
+        map((data) => {
+          const books: Books[] = [];
+          for (let key in data) {
+            books.push({ ...data[key] });
+          }
+          return books;
+        })
+      );
   }
 
   /**

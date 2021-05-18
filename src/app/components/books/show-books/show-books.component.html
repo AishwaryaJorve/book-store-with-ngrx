@@ -2,8 +2,8 @@
 
 <div class="showbooks col-md-6 offset-md-3" *ngIf="!updateBook">
   <hr />
-  <br /><br />
-  <amexio-row>
+  <br /><br /><h1 class="text-center">All Books</h1><hr>
+  <!-- <amexio-row>
     <amexio-column [size]="3">
       <amexio-text-input
         place-holder="Search Book here"
@@ -12,7 +12,7 @@
       >
       </amexio-text-input
     ></amexio-column>
-<!-- 
+
     <amexio-button
       (onClick)="searchBookByName()"
       class="search-button"
@@ -23,11 +23,10 @@
       [form-bind]="'form-bind'"
       [size]="'medium'"
     >
-    </amexio-button> -->
-  </amexio-row>
+    </amexio-button>
+  </amexio-row> -->
 
-  <amexio-row *ngIf="allBooks | async as books">
-    
+    <amexio-column *ngIf="allBooks | async as books" [size]="18">
     <amexio-card
     class="col-md-6 offset-md-3"
     [header]="false"
@@ -59,7 +58,8 @@
       </amexio-button>
     </amexio-action>
   </amexio-card>
-  </amexio-row>
+  
+</amexio-column>
   
 </div>
 
