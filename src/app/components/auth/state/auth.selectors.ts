@@ -6,14 +6,11 @@ export const AUTH_STATE_NAME = "auth";
 const getAuthState = createFeatureSelector<AuthState>(AUTH_STATE_NAME);
 
 export const getBooksFromAuthState = createSelector(getAuthState, (state) => {
-  console.log(state);
-  return state.user.books;
+  console.log("Hello from auth selector");
+  // return state.user.books;
 });
 
-// export const SHARED_STATE_NAME = "shared";
-// const getSharedState = createFeatureSelector<SharedState>(SHARED_STATE_NAME);
-
-// export const getErrorMessage = createSelector(getSharedState, (state) => {
+// export const getUser = createSelector(getAuthState, (state) => {
 //   console.log(state);
-//   return state.errorMessage;
+//   return state.user;
 // });

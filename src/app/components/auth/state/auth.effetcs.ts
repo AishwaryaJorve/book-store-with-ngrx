@@ -86,7 +86,6 @@ export class AuthEffects {
           this.store.dispatch(setErrorMessage({ message: "" }));
           if (action.redirect) {
             this.router.navigate(["../../book/showbooks"]);
-            // <h3>No account? <a routerLink="../auth/signup">Sign Up</a></h3>
           }
         })
       );

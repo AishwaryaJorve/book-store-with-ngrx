@@ -1,11 +1,17 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormArray, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { Store } from "@ngrx/store";
+import { Observable } from "rxjs";
 import { Books } from "src/app/model/books.model";
 import { User } from "src/app/model/user.model";
 import { BooksService } from "src/app/service/books.service";
 import { DataService } from "src/app/service/data.service";
+import { AppState } from "src/app/store/app.state";
 import { v4 as uuid } from "uuid";
+import { AuthState } from "../../auth/state/auth.state";
+import { addBook } from "../state/book.action";
+import { getUser } from "../state/book.selectors";
 @Component({
   selector: "app-add-book",
   templateUrl: "./add-book.component.html",
@@ -16,12 +22,14 @@ export class AddBookComponent implements OnInit {
   bookData: Books;
   formAdded = false;
   bookInComingData: Books;
+  user: User;
   constructor(
     private booksService: BooksService,
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private dataService: DataService
+    private dataService: DataService,
+    private store: Store<AppState>
   ) {}
 
   ngOnInit() {
@@ -38,6 +46,8 @@ export class AddBookComponent implements OnInit {
     this.bookInComingData = this.addBookForm.value;
     let bookId = uuid();
 
+    this.store.select(getUser);
+    console.log(this.user + "Hello from add book");
     // create Books object with all data
     let book: Books = new Books(
       bookId,
@@ -46,16 +56,18 @@ export class AddBookComponent implements OnInit {
       this.bookInComingData.discription
     );
 
+    // this.store.dispatch(addBook({}));
+
     // update books array of user in localstorage
-    let user = this.dataService.saveBook(book);
+    // let user = this.dataService.saveBook(book);
 
     // using book service call to backend to update data.
     // this.booksService.updateBook(user);
 
     // again save updated user's(book) in localstorage.
-    this.dataService.saveUser(user);
+    // this.dataService.saveUser(user);
 
     // navigate to showbooks
-    this.router.navigate(["../showbooks"], { relativeTo: this.route });
+    // this.router.navigate(["../showbooks"], { relativeTo: this.route });
   }
 }

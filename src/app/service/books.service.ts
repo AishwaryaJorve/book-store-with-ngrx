@@ -38,6 +38,8 @@ export class BooksService implements OnInit {
       );
   }
 
+  updateBook(user: User) {}
+
   /**
    * fetch all books of user using user id
    * @param id

@@ -1,10 +1,16 @@
-import { state } from "@angular/animations";
 import { createReducer, on } from "@ngrx/store";
-import { addBook, loadAllBooks, loadBookSuccess } from "./book.action";
+import { addBookSuccess, loadBookSuccess } from "./book.action";
 import { initialState } from "./book.state";
 
 const _bookReducer = createReducer(
   initialState,
+  // on(addBookSuccess, (state, action) => {
+  //   let books = { ...action.user};
+  //   return {
+  //     ...state,
+  //     books: { ...state.books, user},
+  //   };
+  // }),
   on(loadBookSuccess, (state, action) => {
     return {
       ...state,

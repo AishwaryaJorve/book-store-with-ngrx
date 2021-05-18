@@ -114,7 +114,7 @@ export class AuthService {
   }
 
   logOut() {
-    localStorage.removeItem("userData");
+    localStorage.clear();
   }
 }
 

@@ -36,7 +36,7 @@ export class ShowBooksComponent implements OnInit {
   ngOnInit() {
     console.log("in showbooks component");
     //when load page should display all book
-    // this.fetchBooksFromUser();
+    this.fetchBooksFromUser();
     //Whatever we want to get from store  have to give call to selector
     // this.allBooks = this.store.select(
     //   getBooksFromAuthState
@@ -60,7 +60,8 @@ export class ShowBooksComponent implements OnInit {
    */
   fetchBooksFromUser() {
     // call to getUser method of dataservice to get user from localStorage.
-    this.allBooks = this.store.select(getBooksFromAuthState);
+    console.log("fetchBooksFromUser");
+    this.store.select(getBooksFromAuthState);
   }
 
   /**
