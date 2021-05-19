@@ -34,7 +34,9 @@ export class AddBookComponent implements OnInit {
 
   ngOnInit() {
     console.log("addbook");
-    this.store.select(getUser);
+
+    console.log(this.user);
+    // console.log("hello" + this.user);
     this.addBookForm = this.fb.group({
       bookName: ["", Validators.required],
       authorName: ["", Validators.required],
@@ -47,9 +49,9 @@ export class AddBookComponent implements OnInit {
     // copy form filled data in 'bookInComingdata' variable
     this.bookInComingData = this.addBookForm.value;
     let bookId = uuid();
-
-    // this.store.select(getUser);
-    console.log(this.user + "Hello from add book");
+    this.store.select(getUser).subscribe((data) => {
+      this.user = data;
+    });
     // create Books object with all data
     let book: Books = new Books(
       bookId,
@@ -58,7 +60,18 @@ export class AddBookComponent implements OnInit {
       this.bookInComingData.discription
     );
 
-    // this.store.dispatch(addBook({}));
+    const updatableBooks: Books[] = [...this.user.books, book];
+
+    const updatableUser = new User(
+      this.user.id,
+      this.user.firstName,
+      this.user.lastName,
+      this.user.userName,
+      this.user.password,
+      updatableBooks
+    );
+
+    this.store.dispatch(addBook({ user: updatableUser }));
 
     // update books array of user in localstorage
     // let user = this.dataService.saveBook(book);
