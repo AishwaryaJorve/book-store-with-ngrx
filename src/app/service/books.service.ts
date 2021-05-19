@@ -6,6 +6,7 @@ import { User } from "../model/user.model";
 import { DataService } from "./data.service";
 import url from "../constant/Url";
 import { Observable } from "rxjs";
+import { UserWithToken } from "../model/user-with-token.model";
 @Injectable({
   providedIn: "root",
 })
@@ -14,15 +15,21 @@ export class BooksService implements OnInit {
 
   id: any;
   url = "http://localhost:8080/delete";
+
   constructor(private http: HttpClient, private dataService: DataService) {}
 
   ngOnInit() {
     console.log(this.allBooks);
   }
 
-  getAllBooks(id: string): Observable<Books[]> {
+  getToken() {
     let token = localStorage.getItem("token");
     token = JSON.parse(token);
+    return token;
+  }
+
+  getAllBooks(id: string): Observable<Books[]> {
+    let token = this.getToken();
     return this.http
       .get<Books[]>(url.FETCH_BOOK_URL + "/" + id, {
         headers: new HttpHeaders().set("AuthorizedToken", token),
@@ -38,7 +45,25 @@ export class BooksService implements OnInit {
       );
   }
 
-  updateBook(user: User) {}
+  updateBook(user: User): Observable<User> {
+    let token = this.getToken();
+    console.log(user + " " + token);
+    return this.http.put<User>(url.UPDATE_BOOK_URL + "/" + user.id, user, {
+      headers: new HttpHeaders().set("AuthorizedToken", token),
+    });
+  }
+
+  // signUp(firstName, lastName, userName, password, books): Observable<UserWithToken> {
+  //   let signUpData = { firstName, lastName, userName, password, books };
+  //   var reqHeader = new HttpHeaders({
+  //     "Content-Type": "application/json",
+  //     "No-Auth": "True",
+  //   });
+  //   return this.http.post<UserWithToken>(url.SIGNUP_URL, signUpData, {
+  //     headers: reqHeader,
+  //     responseType: "json",
+  //   });
+  // }
 
   /**
    * fetch all books of user using user id

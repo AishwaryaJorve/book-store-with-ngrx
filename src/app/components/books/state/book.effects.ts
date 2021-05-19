@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { map, mergeMap } from "rxjs/operators";
 import { BooksService } from "src/app/service/books.service";
-import { loadAllBooks, loadBookSuccess } from "./book.action";
+import { addBook, loadAllBooks, loadBookSuccess } from "./book.action";
 
 @Injectable()
 export class BookEffects {
@@ -20,4 +20,21 @@ export class BookEffects {
       })
     );
   });
+
+  addBook$ = createEffect(
+    (): any => {
+      return this.action$.pipe(
+        ofType(addBook),
+        mergeMap((action) => {
+          console.log(action.user);
+          return this.bookService.updateBook(action.user).pipe(
+            map((data) => {
+              console.log(data);
+            })
+          );
+        })
+      );
+    },
+    { dispatch: false }
+  );
 }
