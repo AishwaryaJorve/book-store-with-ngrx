@@ -72,17 +72,5 @@ export class AddBookComponent implements OnInit {
     );
 
     this.store.dispatch(addBook({ user: updatableUser }));
-
-    // update books array of user in localstorage
-    // let user = this.dataService.saveBook(book);
-
-    // using book service call to backend to update data.
-    // this.booksService.updateBook(user);
-
-    // again save updated user's(book) in localstorage.
-    // this.dataService.saveUser(user);
-
-    // navigate to showbooks
-    // this.router.navigate(["../showbooks"], { relativeTo: this.route });
   }
 }

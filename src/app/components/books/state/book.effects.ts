@@ -21,6 +21,9 @@ export class BookEffects {
     );
   });
 
+  /**
+   * Add book Effect
+   */
   addBook$ = createEffect(
     (): any => {
       return this.action$.pipe(

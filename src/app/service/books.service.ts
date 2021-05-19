@@ -28,6 +28,11 @@ export class BooksService implements OnInit {
     return token;
   }
 
+  /**
+   * Get all books
+   * @param id
+   * @returns
+   */
   getAllBooks(id: string): Observable<Books[]> {
     let token = this.getToken();
     return this.http
@@ -45,9 +50,14 @@ export class BooksService implements OnInit {
       );
   }
 
+  /**
+   * update book implementation
+   * @param user
+   * @returns
+   */
   updateBook(user: User): Observable<User> {
+    console.log(user);
     let token = this.getToken();
-    console.log(user + " " + token);
     return this.http.put<User>(url.UPDATE_BOOK_URL + "/" + user.id, user, {
       headers: new HttpHeaders().set("AuthorizedToken", token),
     });
