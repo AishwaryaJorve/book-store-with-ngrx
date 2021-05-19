@@ -50,8 +50,5 @@ export class LoginComponent implements OnInit {
 
     let response = this.store.dispatch(loginStart(this.loginData));
     console.log(response);
-    // this.loginService.fetchTokenFromAPI(this.loginData);
-    // let response = this.loginService.login(this.loginData);
-    // console.log(response);
   }
 }

@@ -51,6 +51,4 @@ export class NavbarComponent implements OnInit {
   logout(event: Event) {
     this.store.dispatch(autoLogout());
   }
-
-  // functionName($event) {}
 }
