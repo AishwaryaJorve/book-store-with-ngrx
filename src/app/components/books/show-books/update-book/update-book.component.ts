@@ -28,6 +28,7 @@ export class UpdateBookComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log(this.bookToUpdateWithAllData);
     this.updateBookForm = this.fb.group({
       authorName: ["", Validators.required],
       discription: ["", Validators.required],

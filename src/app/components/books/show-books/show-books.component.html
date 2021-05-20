@@ -43,7 +43,7 @@
     </amexio-body>
     <amexio-action>
       <amexio-button
-        (onClick)="onDeleteClickDeleteBook(book.bookId)"
+        (onClick)="onDeleteClickDeleteBook(allBooks.bookId)"
         [label]="'Delete'"
         [tooltip]="'delete'"
         [icon]="'fa fa-trash'"
@@ -51,7 +51,7 @@
       >
       </amexio-button> 
       <amexio-button
-        (onClick)="onUpdateClick(book)"
+        (onClick)="onUpdateClick(allBooks)"
         [label]="'Update'"
         [type]="'primary'"
       >

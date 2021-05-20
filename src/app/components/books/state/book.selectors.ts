@@ -1,6 +1,5 @@
 import { state } from "@angular/animations";
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { AppState } from "src/app/store/app.state";
 import { AUTH_STATE_NAME } from "../../auth/state/auth.selectors";
 import { AuthState } from "../../auth/state/auth.state";
 import { BookState } from "./book.state";
