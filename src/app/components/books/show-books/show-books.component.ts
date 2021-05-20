@@ -77,37 +77,6 @@ export class ShowBooksComponent implements OnInit {
     });
   }
 
-  /**
-   * dalete book using bookid
-   * @param bookId
-   */
-  onDeleteClickDeleteBook(bookId: any) {
-    console.log("delete");
-    //   //delete book by bookId from localStorage and get perticular book deleted user
-    //   let user = this.bookService.deleteBookById(bookId);
-
-    //   //using updateBook method of bookService backend call for delete from DB.
-    //   this.bookService.updateBook(user);
-
-    //   //after delete book again store fresh user in localstorage.
-    //   this.dataService.saveUser(user);
-
-    //   //after delete book agian reload same page.
-    //   this.reloadCurrentRoute();
-    // }
-
-    // comes id of book which to be update through button onclick
-    // onUpdateClick(bookToUpdateWithAllData: Books) {
-    //   this.bookToUpdateWithAllData = bookToUpdateWithAllData;
-    //   this.updateBook = true;
-    // }
-
-    // called to the getBookByBookName() of the service method
-    // searchBookByName() {
-    //   // this.allBooks = this.books.getBookByBookName(this.bookNameForSearch);
-    //   console.log(this.allBooks);
-  }
-
   onUpdateClick(bookToUpdateWithAllData: Books) {
     this.bookToUpdateWithAllData = bookToUpdateWithAllData;
     console.log(this.bookToUpdateWithAllData);

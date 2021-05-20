@@ -17,6 +17,9 @@ export const getBooks = createSelector(getBookState, (state) => {
   return state.books;
 });
 
+/**
+ * for Auth state
+ */
 const getAuthState = createFeatureSelector<AuthState>(AUTH_STATE_NAME);
 
 export const getUser = createSelector(getAuthState, (state) => {
