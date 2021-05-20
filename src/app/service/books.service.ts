@@ -57,8 +57,15 @@ export class BooksService implements OnInit {
    */
   updateBook(user: User): Observable<User> {
     console.log(user);
+    const userToUpdate = {
+      firstName: user.firstName,
+      lastName: user.lastName,
+      userName: user.userName,
+      password: user.password,
+      books: user.books,
+    };
     let token = this.getToken();
-    return this.http.put<User>(url.UPDATE_BOOK_URL + "/" + user.id, user, {
+    return this.http.put<User>(url.UPDATE_BOOK_URL + "/" + user.id, userToUpdate, {
       headers: new HttpHeaders().set("AuthorizedToken", token),
     });
   }
