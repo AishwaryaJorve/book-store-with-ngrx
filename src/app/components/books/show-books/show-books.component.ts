@@ -69,24 +69,7 @@ export class ShowBooksComponent implements OnInit {
 
   onDeleteClickDeleteBook(bookId: string) {
     let user: User;
-    this.store.select(getUser).subscribe((data) => {
-      user = data;
-    });
-
-    //get books form user
-    let books = user.books;
-
-    //iterate books and match bookId and delete that book
-    for (let i = 0; i < books.length; i++) {
-      if (books[i].bookId === bookId) {
-        books.splice(i, 1);
-      }
-    }
-
-    // after deleted book.. if books length became < 0 then byfefault it will be null so set as empty array
-    if (books.length <= 0) {
-      user.books = [];
-    }
+    user = this.dataService.deleteBookInUser(bookId);
 
     alert("Are you Sure to delete this book");
     this.store.dispatch(addBook({ user: user }));

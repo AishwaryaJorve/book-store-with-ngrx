@@ -26,10 +26,7 @@ export class UpdateBookComponent implements OnInit {
   user: User;
   constructor(
     private fb: FormBuilder,
-    private bookService: BooksService,
     private router: Router,
-    private route: ActivatedRoute,
-    private showBooks: ShowBooksComponent,
     private dataService: DataService,
     private store: Store<AppState>
   ) {}
@@ -43,7 +40,7 @@ export class UpdateBookComponent implements OnInit {
   }
 
   /**
-   * give call to the updateBook method of service to update book.
+   * update book
    */
   onUpdateBook() {
     //save form data in bookInComingData variable

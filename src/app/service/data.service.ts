@@ -24,15 +24,26 @@ export class DataService {
     localStorage.setItem("user", JSON.stringify(user));
   }
 
-  /**
-   * save book
-   * @param book
-   * @returns
-   */
-  saveBook(book: Books) {
-    let user = this.getUser();
+  deleteBookInUser(bookId: string) {
+    let user: User;
+    this.store.select(getUser).subscribe((data) => {
+      user = data;
+    });
+
+    //get books form user
     let books = user.books;
-    user.books = [...books, book];
+
+    //iterate books and match bookId and delete that book
+    for (let i = 0; i < books.length; i++) {
+      if (books[i].bookId === bookId) {
+        books.splice(i, 1);
+      }
+    }
+
+    // after deleted book.. if books length became < 0 then byfefault it will be null so set as empty array
+    if (books.length <= 0) {
+      user.books = [];
+    }
     return user;
   }
 
