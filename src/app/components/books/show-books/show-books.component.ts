@@ -79,7 +79,6 @@ export class ShowBooksComponent implements OnInit {
 
   onUpdateClick(bookToUpdateWithAllData: Books) {
     this.bookToUpdateWithAllData = bookToUpdateWithAllData;
-    console.log(this.bookToUpdateWithAllData);
     this.updateBook = true;
     console.log("on updateClick");
   }
