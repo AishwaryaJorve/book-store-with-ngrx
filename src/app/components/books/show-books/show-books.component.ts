@@ -9,7 +9,7 @@ import { BooksService } from "src/app/service/books.service";
 import { DataService } from "src/app/service/data.service";
 import { AppState } from "src/app/store/app.state";
 import { getBooksFromAuthState } from "../../auth/state/auth.selectors";
-import { loadAllBooks } from "../state/book.action";
+import { addBook, loadAllBooks } from "../state/book.action";
 import { getBooks, getUser } from "../state/book.selectors";
 @Component({
   selector: "app-show-books",
@@ -65,6 +65,33 @@ export class ShowBooksComponent implements OnInit {
     // call to getUser method of dataservice to get user from localStorage.
     console.log("fetchBooksFromUser");
     this.store.select(getBooksFromAuthState);
+  }
+
+  onDeleteClickDeleteBook(bookId: string) {
+    let user: User;
+    this.store.select(getUser).subscribe((data) => {
+      user = data;
+    });
+
+    //get books form user
+    let books = user.books;
+
+    //iterate books and match bookId and delete that book
+    for (let i = 0; i < books.length; i++) {
+      if (books[i].bookId === bookId) {
+        books.splice(i, 1);
+      }
+    }
+
+    // after deleted book.. if books length became < 0 then byfefault it will be null so set as empty array
+    if (books.length <= 0) {
+      user.books = [];
+    }
+
+    alert("Are you Sure to delete this book");
+    this.store.dispatch(addBook({ user: user }));
+
+    this.reloadCurrentRoute();
   }
 
   /**
