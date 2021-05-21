@@ -2,15 +2,13 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormArray, FormBuilder, Validators, FormControl } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { Observable } from "rxjs";
 import { Books } from "src/app/model/books.model";
 import { User } from "src/app/model/user.model";
 import { BooksService } from "src/app/service/books.service";
 import { DataService } from "src/app/service/data.service";
 import { AppState } from "src/app/store/app.state";
 import { v4 as uuid } from "uuid";
-import { AuthState } from "../../auth/state/auth.state";
-import { addBook } from "../state/book.action";
+import { updateBook } from "../state/book.action";
 import { getUser } from "../state/book.selectors";
 @Component({
   selector: "app-add-book",
@@ -33,10 +31,6 @@ export class AddBookComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    console.log("addbook");
-
-    console.log(this.user);
-    // console.log("hello" + this.user);
     this.addBookForm = this.fb.group({
       bookName: ["", Validators.required],
       authorName: ["", Validators.required],
@@ -44,7 +38,9 @@ export class AddBookComponent implements OnInit {
     });
   }
 
-  // onClick save book call to the service function
+  /**
+   * add book
+   */
   onClickAddBook() {
     // copy form filled data in 'bookInComingdata' variable
     this.bookInComingData = this.addBookForm.value;
@@ -74,6 +70,7 @@ export class AddBookComponent implements OnInit {
       updatableBooks
     );
 
-    this.store.dispatch(addBook({ user: updatableUser }));
+    this.store.dispatch(updateBook({ user: updatableUser }));
+    this.router.navigate(["../../book/showbooks"]);
   }
 }

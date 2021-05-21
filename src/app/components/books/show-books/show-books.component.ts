@@ -9,7 +9,7 @@ import { BooksService } from "src/app/service/books.service";
 import { DataService } from "src/app/service/data.service";
 import { AppState } from "src/app/store/app.state";
 import { getBooksFromAuthState } from "../../auth/state/auth.selectors";
-import { addBook, loadAllBooks } from "../state/book.action";
+import { loadAllBooks, updateBook } from "../state/book.action";
 import { getBooks, getUser } from "../state/book.selectors";
 @Component({
   selector: "app-show-books",
@@ -72,7 +72,7 @@ export class ShowBooksComponent implements OnInit {
     user = this.dataService.deleteBookInUser(bookId);
 
     alert("Are you Sure to delete this book");
-    this.store.dispatch(addBook({ user: user }));
+    this.store.dispatch(updateBook({ user: user }));
 
     this.reloadCurrentRoute();
   }

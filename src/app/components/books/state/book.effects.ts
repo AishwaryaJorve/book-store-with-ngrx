@@ -1,12 +1,17 @@
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { map, mergeMap } from "rxjs/operators";
 import { BooksService } from "src/app/service/books.service";
-import { addBook, loadAllBooks, loadBookSuccess } from "./book.action";
+import { loadAllBooks, loadBookSuccess, updateBook, updateBookSuccess } from "./book.action";
 
 @Injectable()
 export class BookEffects {
-  constructor(private action$: Actions, private bookService: BooksService) {}
+  constructor(
+    private action$: Actions,
+    private bookService: BooksService,
+    private router: Router
+  ) {}
 
   loadBooks$ = createEffect((): any => {
     return this.action$.pipe(
@@ -24,15 +29,15 @@ export class BookEffects {
   /**
    * Add book Effect
    */
-  addBook$ = createEffect(
+  updateBook$ = createEffect(
     (): any => {
       return this.action$.pipe(
-        ofType(addBook),
+        ofType(updateBook),
         mergeMap((action) => {
           console.log(action.user);
           return this.bookService.updateBook(action.user).pipe(
             map((data) => {
-              console.log(data);
+              return updateBookSuccess({ user: data });
             })
           );
         })

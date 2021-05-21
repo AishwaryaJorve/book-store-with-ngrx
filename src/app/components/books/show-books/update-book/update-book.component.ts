@@ -8,7 +8,7 @@ import { User } from "src/app/model/user.model";
 import { BooksService } from "src/app/service/books.service";
 import { DataService } from "src/app/service/data.service";
 import { AppState } from "src/app/store/app.state";
-import { addBook } from "../../state/book.action";
+import { updateBook } from "../../state/book.action";
 import { getUser } from "../../state/book.selectors";
 import { ShowBooksComponent } from "../show-books.component";
 
@@ -56,7 +56,7 @@ export class UpdateBookComponent implements OnInit {
     this.user = this.dataService.updateBookInUser(book);
     console.log(this.user);
 
-    this.store.dispatch(addBook({ user: this.user }));
+    this.store.dispatch(updateBook({ user: this.user }));
     alert("Book updated successfully");
     this.reloadCurrentRoute();
   }
