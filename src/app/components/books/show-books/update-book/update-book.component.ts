@@ -49,10 +49,6 @@ export class UpdateBookComponent implements OnInit {
     //save form data in bookInComingData variable
     this.bookInComingData = this.updateBookForm.value;
 
-    this.store.select(getUser).subscribe((data) => {
-      this.user = data;
-    });
-
     //create object of Books with updated data
     let book: Books = new Books(
       this.bookToUpdateWithAllData.bookId,
@@ -60,56 +56,12 @@ export class UpdateBookComponent implements OnInit {
       this.bookInComingData.authorName,
       this.bookInComingData.discription
     );
-
-    //fetch books from user
-    let books = this.user.books;
-
-    for (let i = 0; i < books.length; i++) {
-      if (books[i].bookId == book.bookId) {
-        // update new data with old
-        books[i].authorName = book.authorName;
-        books[i].discription = book.discription;
-        this.user.books = [...books];
-      }
-    }
-
+    this.user = this.dataService.updateBookInUser(book);
     console.log(this.user);
 
     this.store.dispatch(addBook({ user: this.user }));
     alert("Book updated successfully");
     this.reloadCurrentRoute();
-
-    // updateBookInLocalStorage(book:Books){
-
-    //   //fetch books from user
-    //   let books=user.books
-
-    //   //iterate books and matched already books id with incoming bookId to update
-    //   for(let i=0;i<books.length;i++){
-    //     if(books[i].bookId==book.bookId){
-
-    //       // update new data with old
-    //       books[i].authorName=book.authorName;
-    //       books[i].discription=book.discription;
-    //       user.books=[...books];
-    //     }
-    //   }
-    //   return user;
-    // }
-
-    // // call updateBookInLocalStorage method to update book with new data
-    let user = this.dataService.updateBookInLocalStorage(book);
-
-    // //call to updateBook method to call backend.
-    // // this.bookService.updateBook(user);
-
-    // // after update book again save user(with updated book) in localstorage.
-    // this.dataService.saveUser(user);
-
-    // // after done all again reload page(will show all books with updation)
-    // this.reloadCurrentRoute();
-
-    // alert("Book updated successfully");
   }
 
   /**
