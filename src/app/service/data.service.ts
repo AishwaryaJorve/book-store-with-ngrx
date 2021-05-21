@@ -13,17 +13,10 @@ export class DataService {
   constructor(private store: Store<AppState>) {}
 
   /**
-   * save token in localstorage
-   * @param token
+   * delete book of incoming id from user
+   * @param bookId
+   * @returns user
    */
-  saveToken(token: string) {
-    localStorage.setItem("token", token);
-  }
-
-  saveUser(user: User) {
-    localStorage.setItem("user", JSON.stringify(user));
-  }
-
   deleteBookInUser(bookId: string) {
     let user: User;
     this.store.select(getUser).subscribe((data) => {
@@ -48,8 +41,9 @@ export class DataService {
   }
 
   /**
-   * update book
+   * update incoming book in user
    * @param book
+   * @returns user
    */
   updateBookInUser(book: Books) {
     let user: User;
@@ -70,46 +64,5 @@ export class DataService {
       }
     }
     return user;
-  }
-
-  /**
-   * fetch user from localstorage.
-   * @returns user
-   */
-  getUser() {
-    let user = <User>JSON.parse(localStorage.getItem("user"));
-    return user;
-  }
-
-  /**
-   * fetch token from localstorage.
-   * @returns token
-   */
-  getToken() {
-    let token = localStorage.getItem("token");
-    return token;
-  }
-
-  /**
-   * to check is user log in or not with fetching token from localstorage
-   * @returns
-   */
-  isLoggedIn() {
-    //fetch token from localstorage
-    let token = localStorage.getItem("token");
-    if (token == undefined || token === "" || token == null) {
-      return false;
-    } else {
-      return true;
-    }
-  }
-
-  /**
-   * to logout user with removing token from localstorage
-   * @returns
-   */
-  logout() {
-    localStorage.clear();
-    return true;
   }
 }

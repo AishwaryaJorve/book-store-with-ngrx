@@ -48,6 +48,8 @@ export class AddBookComponent implements OnInit {
   onClickAddBook() {
     // copy form filled data in 'bookInComingdata' variable
     this.bookInComingData = this.addBookForm.value;
+
+    //set unique bookId using uuid
     let bookId = uuid();
     this.store.select(getUser).subscribe((data) => {
       this.user = data;
@@ -60,6 +62,7 @@ export class AddBookComponent implements OnInit {
       this.bookInComingData.discription
     );
 
+    //add new incoming book in user.book array
     const updatableBooks: Books[] = [...this.user.books, book];
 
     const updatableUser = new User(
