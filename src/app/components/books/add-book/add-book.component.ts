@@ -9,7 +9,7 @@ import { DataService } from "src/app/service/data.service";
 import { AppState } from "src/app/store/app.state";
 import { v4 as uuid } from "uuid";
 import { updateBook } from "../state/book.action";
-import { getUser } from "../state/book.selectors";
+import { getBooks, getUser } from "../state/book.selectors";
 @Component({
   selector: "app-add-book",
   templateUrl: "./add-book.component.html",
@@ -21,6 +21,7 @@ export class AddBookComponent implements OnInit {
   formAdded = false;
   bookInComingData: Books;
   user: User;
+  books: Books[];
   constructor(
     private booksService: BooksService,
     private fb: FormBuilder,
@@ -50,16 +51,22 @@ export class AddBookComponent implements OnInit {
     this.store.select(getUser).subscribe((data) => {
       this.user = data;
     });
+    this.store.select(getBooks).subscribe((data) => {
+      this.books = data;
+    });
+    console.log(this.user);
     // create Books object with all data
-    let book: Books = new Books(
-      bookId,
-      this.bookInComingData.bookName,
-      this.bookInComingData.authorName,
-      this.bookInComingData.discription
-    );
+    let book = {
+      bookId: bookId,
+      bookName: this.bookInComingData.bookName,
+      authorName: this.bookInComingData.authorName,
+      discription: this.bookInComingData.discription,
+    };
 
     //add new incoming book in user.book array
-    const updatableBooks: Books[] = [...this.user.books, book];
+    const updatableBooks: Books[] = [...this.books, book];
+
+    console.log(updatableBooks);
 
     const updatableUser = new User(
       this.user.id,
@@ -69,6 +76,8 @@ export class AddBookComponent implements OnInit {
       this.user.password,
       updatableBooks
     );
+
+    console.log(this.user);
 
     this.store.dispatch(updateBook({ user: updatableUser }));
     this.router.navigate(["../../book/showbooks"]);

@@ -7,11 +7,9 @@ import { LoginComponent } from "./components/auth/login/login.component";
 // import { UpdateBookComponent } from "./components/books/show-books/update-book/update-book.component";
 import { SignUpComponent } from "./components/auth/sign-up/sign-up.component";
 import { ErrorPageComponent } from "./error-page/error-page.component";
-import { AuthGuard } from "./service/auth.guard";
 import { AuthModule } from "./components/auth/auth.module";
 import { ShowBooksComponent } from "./components/books/show-books/show-books.component";
 import { BookModule } from "./components/books/book.module";
-// import { BookModule } from "./components/books/book.module";
 const appRoutes: Routes = [
   {
     path: "auth",
@@ -21,12 +19,6 @@ const appRoutes: Routes = [
     path: "book",
     loadChildren: () => BookModule,
   },
-  // {
-  //   path: "addbook",
-  //   component: AddBookComponent,
-  //   pathMatch: "full",
-  //   canActivate: [AuthGuard],
-  // },
   {
     path: "dashboard",
     component: DashboardComponent,

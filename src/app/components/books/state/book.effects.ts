@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { map, mergeMap } from "rxjs/operators";
+import { User } from "src/app/model/user.model";
 import { BooksService } from "src/app/service/books.service";
 import { loadAllBooks, loadBookSuccess, updateBook, updateBookSuccess } from "./book.action";
 
@@ -19,6 +20,7 @@ export class BookEffects {
       mergeMap((action) => {
         return this.bookService.getAllBooks(action.id).pipe(
           map((books) => {
+            console.log("load book");
             return loadBookSuccess({ books });
           })
         );
@@ -29,20 +31,18 @@ export class BookEffects {
   /**
    * Add book Effect
    */
-  updateBook$ = createEffect(
-    (): any => {
-      return this.action$.pipe(
-        ofType(updateBook),
-        mergeMap((action) => {
-          console.log(action.user);
-          return this.bookService.updateBook(action.user).pipe(
-            map((data) => {
-              return updateBookSuccess({ user: data });
-            })
-          );
-        })
-      );
-    },
-    { dispatch: false }
-  );
+  updateBook$ = createEffect((): any => {
+    return this.action$.pipe(
+      ofType(updateBook),
+      mergeMap((action) => {
+        console.log(action.user);
+        return this.bookService.updateBook(action.user).pipe(
+          map((user: User) => {
+            console.log("from effects update book");
+            return updateBookSuccess({ user: user });
+          })
+        );
+      })
+    );
+  });
 }

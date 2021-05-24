@@ -55,7 +55,7 @@ export class BooksService implements OnInit {
    * @param user
    * @returns
    */
-  updateBook(user: User): Observable<User> {
+  updateBook(user: User): any {
     console.log(user);
     const userToUpdate = {
       firstName: user.firstName,
@@ -65,7 +65,7 @@ export class BooksService implements OnInit {
       books: user.books,
     };
     let token = this.getToken();
-    return this.http.put<User>(url.UPDATE_BOOK_URL + "/" + user.id, userToUpdate, {
+    return this.http.put(url.UPDATE_BOOK_URL + "/" + user.id, userToUpdate, {
       headers: new HttpHeaders().set("AuthorizedToken", token),
     });
   }

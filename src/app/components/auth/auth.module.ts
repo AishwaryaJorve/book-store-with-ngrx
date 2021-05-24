@@ -12,7 +12,6 @@ import {
   AmexioMapModule,
   AmexioWidgetModule,
 } from "amexio-ng-extensions";
-import { AuthGuard } from "src/app/service/auth.guard";
 import { DashboardComponent } from "../dashboard/dashboard.component";
 import { LoginComponent } from "./login/login.component";
 import { SignUpComponent } from "./sign-up/sign-up.component";
