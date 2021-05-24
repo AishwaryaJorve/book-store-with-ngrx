@@ -48,9 +48,13 @@ export class AddBookComponent implements OnInit {
 
     //set unique bookId using uuid
     let bookId = uuid();
+
+    //get logged in user
     this.store.select(getUser).subscribe((data) => {
       this.user = data;
     });
+
+    //get updated book always
     this.store.select(getBooks).subscribe((data) => {
       this.books = data;
     });
@@ -66,8 +70,6 @@ export class AddBookComponent implements OnInit {
     //add new incoming book in user.book array
     const updatableBooks: Books[] = [...this.books, book];
 
-    console.log(updatableBooks);
-
     const updatableUser = new User(
       this.user.id,
       this.user.firstName,
@@ -76,8 +78,6 @@ export class AddBookComponent implements OnInit {
       this.user.password,
       updatableBooks
     );
-
-    console.log(this.user);
 
     this.store.dispatch(updateBook({ user: updatableUser }));
     this.router.navigate(["../../book/showbooks"]);

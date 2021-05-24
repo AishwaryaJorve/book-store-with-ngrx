@@ -1,16 +1,13 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormGroup, FormArray, FormBuilder, Validators, FormControl } from "@angular/forms";
-import { ActivatedRoute, Params, Router } from "@angular/router";
+import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { Subscription } from "rxjs";
 import { Books } from "src/app/model/books.model";
 import { User } from "src/app/model/user.model";
-import { BooksService } from "src/app/service/books.service";
 import { DataService } from "src/app/service/data.service";
 import { AppState } from "src/app/store/app.state";
 import { updateBook } from "../../state/book.action";
-import { getUser } from "../../state/book.selectors";
-import { ShowBooksComponent } from "../show-books.component";
 
 @Component({
   selector: "app-update-book",
