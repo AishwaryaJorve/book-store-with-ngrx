@@ -76,6 +76,7 @@ export class AuthEffects {
       })
     );
   });
+
   loginRedirect$ = createEffect(
     () => {
       console.log("loginRedirect$");
@@ -97,28 +98,48 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(signupStart),
       exhaustMap((action) => {
-        return this.authService
-          .signUp(action.firstName, action.lastName, action.userName, action.password, action.books)
-          .pipe(
-            map((data) => {
-              const user = this.authService.formatUser(data);
-              // After get user call to setUserLocalStorage
-              this.authService.setUserInLocalStorage(user);
-              return signupSuccess({
-                user,
-                redirect: true,
-              });
-            }),
-            catchError((errResp): any => {
-              // console.log(errResp);
-              this.errorMessage = this.authService.getErrorMessage(errResp.status);
-              return of(
-                setErrorMessage({
-                  message: this.errorMessage,
-                })
-              );
-            })
-          );
+        //call to signup function of authservice
+        return (
+          this.authService
+            .signUp(
+              action.firstName,
+              action.lastName,
+              action.userName,
+              action.password,
+              action.books
+            )
+            //if login successful set error message as empty string
+            .pipe(
+              map((data) => {
+                //if login successful set error message as empty string
+                this.store.dispatch(setErrorMessage({ message: "" }));
+                /**
+                 *After signUp we will get token and user we want user only so call to
+                 * formatUser of authservice
+                 */
+                const user = this.authService.formatUser(data);
+                // After get user call to setUserLocalStorage
+                this.authService.setUserInLocalStorage(user);
+                return signupSuccess({
+                  user,
+                  redirect: true,
+                });
+              }),
+              catchError((errResp): any => {
+                /**
+                 * call to getErrorMessage method of authService will status code wise get
+                 * error message
+                 * */
+                this.errorMessage = this.authService.getErrorMessage(errResp.status);
+                //set that message in state
+                return of(
+                  setErrorMessage({
+                    message: this.errorMessage,
+                  })
+                );
+              })
+            )
+        );
       })
     );
   });
@@ -127,8 +148,9 @@ export class AuthEffects {
     return this.actions$.pipe(
       ofType(autoLogin),
       mergeMap((action) => {
+        //fetch user from localstorage
         const user = this.authService.getUserFromLocalStorage();
-        console.log(user);
+        //call login success
         return of(loginSuccess({ user, redirect: false }));
       })
     );
@@ -146,17 +168,4 @@ export class AuthEffects {
     },
     { dispatch: false }
   );
-
-  // signUpRedirect$ = createEffect(
-  //   () => {
-  //     return this.actions$.pipe(
-  //       ofType(loginSuccess),
-  //       tap((action) => {
-  //         this.store.dispatch(setErrorMessage({ message: "" }));
-  //         this.router.navigate(["/addbook"], { relativeTo: this.route });
-  //       })
-  //     );
-  //   },
-  //   { dispatch: false }
-  // );
 }
