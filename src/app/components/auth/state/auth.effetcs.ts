@@ -102,6 +102,8 @@ export class AuthEffects {
           .pipe(
             map((data) => {
               const user = this.authService.formatUser(data);
+              // After get user call to setUserLocalStorage
+              this.authService.setUserInLocalStorage(user);
               return signupSuccess({
                 user,
                 redirect: true,
