@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { AddBookComponent } from "./components/books/add-book/add-book.component";
-import { DashboardComponent } from "./components/dashboard/dashboard.component";
+import { DashboardComponent } from "./components/shared/dashboard/dashboard.component";
 import { LoginComponent } from "./components/auth/login/login.component";
 // import { UpdateBookComponent } from "./components/books/show-books/update-book/update-book.component";
 import { SignUpComponent } from "./components/auth/sign-up/sign-up.component";

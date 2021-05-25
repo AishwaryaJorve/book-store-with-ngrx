@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { DataService } from "src/app/service/data.service";
 import { AppState } from "src/app/store/app.state";
-import { autoLogout } from "../auth/state/auth.action";
+import { autoLogout } from "../../auth/state/auth.action";
 
 @Component({
   selector: "app-navbar",

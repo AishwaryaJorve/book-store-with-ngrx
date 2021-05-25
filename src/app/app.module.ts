@@ -10,7 +10,7 @@ import {
   AmexioMapModule,
 } from "amexio-ng-extensions";
 import { AppComponent } from "./app.component";
-import { DashboardComponent } from "./components/dashboard/dashboard.component";
+import { DashboardComponent } from "./components/shared/dashboard/dashboard.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { HttpClientModule } from "@angular/common/http";
 import { BooksService } from "./service/books.service";

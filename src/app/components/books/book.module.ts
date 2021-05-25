@@ -13,7 +13,7 @@ import {
   AmexioMapModule,
   AmexioWidgetModule,
 } from "amexio-ng-extensions";
-import { NavbarComponent } from "../navbar/navbar.component";
+import { NavbarComponent } from "../shared/navbar/navbar.component";
 import { AddBookComponent } from "./add-book/add-book.component";
 import { ShowBooksComponent } from "./show-books/show-books.component";
 import { UpdateBookComponent } from "./show-books/update-book/update-book.component";

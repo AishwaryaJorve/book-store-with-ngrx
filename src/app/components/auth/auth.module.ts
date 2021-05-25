@@ -12,7 +12,7 @@ import {
   AmexioMapModule,
   AmexioWidgetModule,
 } from "amexio-ng-extensions";
-import { DashboardComponent } from "../dashboard/dashboard.component";
+import { DashboardComponent } from "../shared/dashboard/dashboard.component";
 import { LoginComponent } from "./login/login.component";
 import { SignUpComponent } from "./sign-up/sign-up.component";
 import { AuthEffects } from "./state/auth.effetcs";
