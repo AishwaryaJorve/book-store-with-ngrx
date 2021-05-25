@@ -18,7 +18,6 @@ import { TranslocoRootModule } from "./transloco/transloco-root.module";
 import { ErrorPageComponent } from "./error-page/error-page.component";
 import { DataService } from "./service/data.service";
 import { AuthService } from "./service/auth.service";
-import { SignupService } from "./service/signup.service";
 import { environment } from "src/environments/environment";
 import { StoreDevtoolsModule } from "@ngrx/store-devtools";
 import { StoreModule } from "@ngrx/store";
@@ -48,7 +47,7 @@ import { AuthEffects } from "./components/auth/state/auth.effetcs";
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
   ],
-  providers: [BooksService, DataService, AuthService, SignupService],
+  providers: [BooksService, DataService, AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
