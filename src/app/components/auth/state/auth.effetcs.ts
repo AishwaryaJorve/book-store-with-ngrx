@@ -4,8 +4,6 @@ import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { Store } from "@ngrx/store";
 import { of } from "rxjs";
 import { catchError, exhaustMap, map, mergeMap, tap } from "rxjs/operators";
-import { Login } from "src/app/model/login.model";
-import { SignUp } from "src/app/model/signup.model";
 import { AuthService } from "src/app/service/auth.service";
 import { setErrorMessage } from "src/app/store/shared/shared.action";
 import {

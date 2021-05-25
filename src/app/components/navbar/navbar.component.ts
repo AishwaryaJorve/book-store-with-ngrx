@@ -23,15 +23,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {}
 
   onClickHome() {
-    this.router.navigate(["../dashboard"], {
-      relativeTo: this.route,
-    });
-  }
-
-  onClickDashboard() {
-    this.router.navigate(["../dashboard"], {
-      relativeTo: this.route,
-    });
+    this.store.dispatch(autoLogout());
   }
 
   onClickAddBook() {

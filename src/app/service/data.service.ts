@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Store } from "@ngrx/store";
-import { getUser } from "../components/books/state/book.selectors";
+import { getBooks, getUser } from "../components/books/state/book.selectors";
 import { Books } from "../model/books.model";
 import { UserWithToken } from "../model/user-with-token.model";
 import { User } from "../model/user.model";
@@ -47,13 +47,15 @@ export class DataService {
    */
   updateBookInUser(book: Books) {
     let user: User;
+    let books: Books[];
+    //get updated book always
+    this.store.select(getBooks).subscribe((data) => {
+      books = data;
+    });
 
     this.store.select(getUser).subscribe((data) => {
       user = data;
     });
-
-    //fetch books from user
-    let books = user.books;
 
     for (let i = 0; i < books.length; i++) {
       if (books[i].bookId == book.bookId) {

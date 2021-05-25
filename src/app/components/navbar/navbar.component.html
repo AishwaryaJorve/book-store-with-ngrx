@@ -2,16 +2,11 @@
 
 <amexio-row>
   <amexio-column class="fixed">
-    <amexio-nav
-      amexioColorPalette
-      [color-palette]="'primary'"
-      [class]="'header-style'"
-    >
+    <amexio-nav amexioColorPalette [color-palette]="'primary'" [class]="'header-style'">
       <amexio-nav-item
         position-left
         [type]="'menu'"
-        (onNavItemClick)="onClickDashboard()"
-        routerLinkActive="active"
+        (onNavItemClick)="onClickHome()"
         [title]="'Home'"
       >
       </amexio-nav-item>
