@@ -38,7 +38,7 @@ export class ShowBooksComponent implements OnInit {
   ngOnInit() {
     console.log("in showbooks component");
     //when load page should display all book
-    this.fetchBooksFromUser();
+    // this.fetchBooksFromUser();
     //Whatever we want to get from store  have to give call to selector
     // this.allBooks = this.store.select(
     //   getBooksFromAuthState
@@ -48,12 +48,13 @@ export class ShowBooksComponent implements OnInit {
     // this.store.dispatch(customIncrement({ value: +this.value }));
 
     this.store.dispatch(loadAllBooks({ id: this.idOfLoggedInUser }));
-    this.user = this.store.select(getUser);
+    // this.user = this.store.select(getUser);
     this.allBooks = this.store.select(getBooks);
   }
 
   findIdOfLoggedInUser() {
     const userDataString = localStorage.getItem("userData");
+    console.log(userDataString);
     let userData = JSON.parse(userDataString);
     console.log(userData);
     this.idOfLoggedInUser = userData.id.toString();
@@ -82,10 +83,11 @@ export class ShowBooksComponent implements OnInit {
    * reload same page code.
    */
   reloadCurrentRoute() {
-    let currentUrl = this.router.url;
-    this.router.navigateByUrl("/", { skipLocationChange: true }).then(() => {
-      this.router.navigate([currentUrl]);
-    });
+    // let currentUrl = this.router.url;
+    // this.router.navigateByUrl("/", { skipLocationChange: true }).then(() => {
+    //   this.router.navigate([currentUrl]);
+    // });
+    this.ngOnInit();
   }
 
   onUpdateClick(bookToUpdateWithAllData: Books) {
